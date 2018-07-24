@@ -16,7 +16,10 @@ var a = '',
     c = false,
     d,
     f = null,
-    g = undefined;
+    g = undefined,
+    
+    h = {},
+    j = [];
      
 console.log(a==b, a==c, b==c); // true true true
 console.log(d==f, f==g); // true true
@@ -25,10 +28,18 @@ console.log(a==d); // false
 
 console.log(f + 10); // 10 null+10
 console.log(d + 10); // NaN undefined+10
-console.log(e + 10); // ReferenceError: e is not defined
+console.log(e + 10); // ReferenceError: e is not defined  未声明与未赋值的区别
+
+console.log(a>=b, a<=c, b>=c); // true true true
+console.log(a>=f, b<=f); // true true  null在计算的时候会转换为 0
+console.log(0>=undefined, null<=undefined, null<=undefined); // false false false  undefined不能计算
+
+console.log(0=={}, 0==[], 0<=[]); // false true true  [] 与 {} 不同
 
 console.log(c.toString()); // 'false'
 console.log(b.toString()); // '0'
 
 console.log(f.toString()); // TypeError: Cannot read property 'toString' of null
 console.log(f.toString()); // TypeError: Cannot read property 'toString' of undefined
+
+
