@@ -23,6 +23,25 @@ window.onresize = debounce(myFunc, 200);
 function myFunc (e) {
   console.log('resize', e);
 }
+// 优化 当大于多少秒时必须执行一次
+var debounce = function(fn, delay， maxTime){
+ 	var timer = null;
+ var startTime;
+ 	return function(){
+ 		var context = this, args = arguments, endTime=+new Date();
+ 		clearTimeout(timer);
+   if(!startTime) { startTime=endTime; }
+   if(endTime-startTime>=maxTime) {
+      fn.apply(context, args);
+     startTime=endTime;
+   } else {
+     timer = setTimeout(function(){
+       fn.apply(context, args);
+     }, delay);
+   }
+ 		
+ 	};
+};
 //throttle
 var throttle = function(fn, delay) {
   var startTime;
